@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>01_初识jQuery</title>
+
+  <!--
+  方式一: 使用原生JS实现功能
+  -->
+  <script type="text/javascript">
+    window.onload = function () {
+      var btn = document.getElementById('btn1')
+      btn.onclick = function () {
+        alert(document.getElementById('username').value)
+      }
+    }
+  </script>
+  <!--
+  方式二: 使用jQuery实现功能
+    1. 引入jQuery库
+      * 本地引入
+      * 远程引入
+    2. 使用jQuery函数和jQuery对象编码
+  -->
+  <script type="text/javascript" src="js/jquery-1.10.1.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $('#btn2').click(function  () {
+        alert($('#username').val())
+      })
+    })
+  </script>
+</head>
+<body>
+<!--
+需求: 点击"确定"按钮, 提示输入的值
+-->
+
+用户名: <input type="text" id="username">
+<button id="btn1">确定(原生版)</button>
+<button id="btn2">确定(jQuery版)</button>
+</body>
+
+</html>

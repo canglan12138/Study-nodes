@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>03_回到顶部</title>
+  <style>
+    #to_top {
+      width: 30px;
+      height: 40px;
+      font: 14px/20px arial;
+      text-align: center;
+      background: #06c;
+      position: fixed;
+      cursor: pointer;
+      color: #fff;
+      left: 1250px;
+      top: 500px;
+    }
+  </style>
+</head>
+<body style="height: 2000px;">
+
+<div id="to_top">返回顶部</div>
+
+<script src="jquery-1.10.1.js"></script>
+<script>
+  $(function () {
+    //回到顶部
+    $('#to_top').click(function () {
+      var $body = $(document.body)
+      var $html = $(document.documentElement)
+
+      //使用scrollTop(): 瞬间滚动到顶部
+      // $('html,body').scrollTop(0)
+
+      //使用scrollTop(): 平滑滚动到顶部
+      var offset = $body.scrollTop() + $html.scrollTop()
+      if(offset===0) {
+        return
+      }
+      var totalTime = 300
+      var intervalTime = 30
+      var itemOffset = offset/(totalTime/intervalTime)
+      var intervalId = setInterval(function () {
+        offset -= itemOffset
+        if(offset<=0) {
+          offset = 0
+          clearInterval(intervalId)
+        }
+        $('html,body').scrollTop(offset)
+      }, intervalTime)
+
+      //使用动画: 平滑滚动到顶部
+      // $('body,html').animate({scrollTop:0},300)
+    })
+  });
+</script>
+</body>
+
+</html>
